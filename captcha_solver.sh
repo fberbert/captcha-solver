@@ -1,7 +1,7 @@
 #!/usr/bin/expect
 
 # Start the bash script that prompts for the captcha
-spawn ./captcha.sh
+spawn ./simulate_captcha.sh
 
 # Wait for the prompt that contains "Client"
 expect -re "Client.*" {
