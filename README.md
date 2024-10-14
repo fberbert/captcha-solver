@@ -21,5 +21,5 @@ This project is a simple script that solves captcha challenges via terminal usin
 3. Run the Expect script to automatically solve the captcha:
 
 ```bash
-chmod +x captcha_solver.sh
-./captcha_solver.sh
+chmod +x captcha-solver.sh simulate-captcha.sh
+./captcha-solver.sh
