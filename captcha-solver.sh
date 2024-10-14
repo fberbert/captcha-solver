@@ -17,20 +17,17 @@ expect -re "Client.*" {
         # Capture the third line from the list
         set line [lindex $lines 2]
 
-        # Use a regular expression to capture the arithmetic expression (the captcha)
-        if {[regexp {([0-9]+ *[+\-*\/] *[0-9]+)} $line match expression]} {
+        # remove the = ? at the end of the line
+        regsub { = \?} $line "" line
 
-            # Evaluate the expression using 'expr' in Tcl
-            set result [expr $expression]
-            
-            # Send the result followed by Enter
-            send "$result\r"
+        # solve the captcha
+        set result [expr $line]
 
-            # Wait for the shell prompt after solving the captcha
-            expect "$ "
-        } else {
-            puts "Error: unable to capture the expression"
-        }
+        # Send the result followed by Enter
+        send "$result\r"
+
+        # Wait for the shell prompt after solving the captcha
+        expect "$ "
     } else {
         puts "Error: unable to capture the third line, insufficient lines in the buffer"
     }
